@@ -4,7 +4,7 @@ import Logo from "../../../components/Logo/Logo";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center  text-primary-content p-10">
+    <footer className="footer bg-black rounded-2xl footer-horizontal footer-center  text-primary-content p-10">
       <aside>
        <Link to="/">
           <section className="flex items-end">

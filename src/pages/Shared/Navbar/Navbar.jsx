@@ -53,8 +53,9 @@ const Navbar = () => {
             
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end gap-4">
+          <a className="btn outline bg-white">Sign In</a>
+          <a className="btn btn-primary rounded-xl text-black ">Be a Rider</a>
         </div>
       </div>
     </div>
