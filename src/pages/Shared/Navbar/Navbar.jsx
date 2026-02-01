@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router";
 const Navbar = () => {
     const links = <>
     <li><NavLink>Service</NavLink></li>
-    <li><NavLink>Coverage</NavLink></li>
+    <li><NavLink to='/coverage'>Coverage</NavLink></li>
     <li><NavLink>About Us</NavLink></li>
     <li><NavLink>Pricing</NavLink></li>
     <li><NavLink>Be a Rider</NavLink></li>

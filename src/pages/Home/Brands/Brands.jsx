@@ -9,6 +9,7 @@ import amazon from '../../../assets/brands/amazon.png'
 import star from '../../../assets/brands/star.png'
 import start_people from '../../../assets/brands/start_people.png'
 import { Autoplay } from "swiper/modules";
+import live_tracking from '../../../assets/live-tracking.png'
 
 const brandLogos=[amazon, casio, moonstar, randstad, star, start_people]
 const Brands = () => {
@@ -33,6 +34,7 @@ const Brands = () => {
       
      
     </Swiper>
+
     </div>
   );
 };

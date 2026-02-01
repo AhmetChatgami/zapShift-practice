@@ -1,19 +1,15 @@
 import React, { use } from "react";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReviewCard from "./ReviewCard";
 import customer_top from "../../../assets/customer-top.png";
 const Reviews = ({ reviewsPromise }) => {
   const reviews = use(reviewsPromise);
   return (
-    <div>
+    <div className="py-10">
       <section className="text-center py-10">
         <div className="flex justify-center w-full">
-          <img
-            src={customer_top}
-            alt=""
-            className="max-w-xs md:max-w-sm"
-          />
+          <img src={customer_top} alt="" className="max-w-xs md:max-w-sm" />
         </div>
 
         <div className="mt-6">
@@ -28,19 +24,25 @@ const Reviews = ({ reviewsPromise }) => {
         </div>
       </section>
       <Swiper
+        loop={true}
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"auto"}
         coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
+          rotate: 30,
+          stretch: "50%",
+          depth: 200,
+          scale: 0.75,
           modifier: 1,
           slideShadows: true,
         }}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
         pagination={true}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper"
       >
         {reviews.map((review) => (

@@ -10,10 +10,10 @@ const Banner = () => {
       <Carousel autoplay={true} infiniteLoop={true}>
         <div className="relative w-fit">
           <img src={banner1} />
-          <button class="absolute bottom-15 left-20 bg-primary text-black font-semibold px-4 py-2 rounded-full shadow-lg">
+          <button className="absolute bottom-15 left-20 bg-primary text-black font-semibold px-4 py-2 rounded-full shadow-lg">
             Track Your Parcel
           </button>
-          <button class="absolute bottom-15 outline-1 text-black font-semibold px-4 py-2">
+          <button className="absolute bottom-15 outline-1 text-black font-semibold px-4 py-2">
             Be A Rider
           </button>
         </div>
