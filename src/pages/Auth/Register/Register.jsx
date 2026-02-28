@@ -7,25 +7,31 @@ import useAuth from "../../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import SocialLogin from "../SocialLogin/SocialLogin";
 const Register = () => {
-  const { register, handleSubmit, formState: {errors} } = useForm();
-  const {registerUser} = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { registerUser } = useAuth();
 
   const handleRegister = (data) => {
     console.log(data);
     registerUser(data.email, data.password)
-    .then(result =>{
-      console.log(result.user)
-    })
-    .catch(error =>{
-      console.log(error.message)
-    })
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div className="max-w-7xl mx-auto">
       <form onSubmit={handleSubmit(handleRegister)}>
         <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-          <h2 className="text-3xl text-center">Create an account</h2>
-        <p className="text-center">Free to register</p>
+          <span className="m-6">
+            <h2 className="text-4xl">Create an Account</h2>
+            <p className="">Register with ZapShift</p>
+          </span>
           <div className="card-body">
             <fieldset className="fieldset">
               {/* name field */}
@@ -36,9 +42,25 @@ const Register = () => {
                 className="input"
                 placeholder="What's your name?"
               />
-              {errors.name?.type === 'required' && <p className="text-red-500">You need to set your name</p>}
+              {errors.name?.type === "required" && (
+                <p className="text-red-500">You need to set your name</p>
+              )}
+              
+              {/* Image field */}
+              <label className="label">Image URL</label>
+              <input
+                type="file"
+                {...register("photo", { required: true })}
+                className="file-input"
+                placeholder="Set Your Photo"
+              />
+              {errors.photo?.type === "required" && (
+                <p className="text-red-500">You need to set your photo</p>
+              )}
 
 
+
+              {/* Email Field */}
               <label className="label">Email</label>
               <input
                 type="email"
@@ -46,7 +68,9 @@ const Register = () => {
                 className="input"
                 placeholder="Email"
               />
-              {errors.email?.type === 'required' && <p className="text-red-500">Email is required</p>}
+              {errors.email?.type === "required" && (
+                <p className="text-red-500">Email is required</p>
+              )}
               <label className="label">Password</label>
               <input
                 type="password"
@@ -54,8 +78,14 @@ const Register = () => {
                 className="input"
                 placeholder="Password"
               />
-              {errors.password?.type === 'required' && <p className="text-red-500">Password is required</p>}
-              {errors.password?.type === 'minLength' && <p className="text-red-500">Password must be at least 6 characters</p>}
+              {errors.password?.type === "required" && (
+                <p className="text-red-500">Password is required</p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-500">
+                  Password must be at least 6 characters
+                </p>
+              )}
               <div>
                 <p className="link link-hover">
                   Have an account? <Link to="/sign-in">Login</Link>
