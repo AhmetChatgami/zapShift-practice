@@ -1,8 +1,17 @@
 import React from "react";
 import Logo from "../../../components/Logo/Logo";
 import { Link, NavLink } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const {user, logOut}= useAuth()
+  const handleSignOut =()=>{
+    logOut()
+    .then()
+    .catch(error =>{
+      console.log(error.message)
+    })
+  }
     const links = <>
     <li><NavLink>Service</NavLink></li>
     <li><NavLink to='/coverage'>Coverage</NavLink></li>
@@ -42,7 +51,7 @@ const Navbar = () => {
           <Link to="/">
           <section className="flex items-end">
             <Logo/>
-            <h1 className="text-2xl font-bold pt-3 -mx-2">ZapShift</h1>
+            
           </section>
           </Link>
         </div>
@@ -54,7 +63,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-4">
-          <a className="btn outline bg-white">Sign In</a>
+          {
+            user ? <a onClick={handleSignOut} className="btn outline bg-white">Sign Out</a> : <Link className="btn" to='/sign-in'>Sign In</Link>
+          }
           <a className="btn btn-primary rounded-xl text-black ">Be a Rider</a>
         </div>
       </div>

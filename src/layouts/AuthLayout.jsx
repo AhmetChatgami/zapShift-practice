@@ -1,15 +1,15 @@
 import React from 'react';
 import Logo from '../components/Logo/Logo';
-import { Outlet } from 'react-router';
+import { Link, Outlet } from 'react-router';
 import authImage from '../assets/authImage.png'
 const AuthLayout = () => {
     return (
         <div className='max-w-7xl mx-auto'>
             <h1 className='flex items-center'>
-                <Logo></Logo><p className='text-xl font-semibold -mx-2'>ZapShift</p>
+                <Link to="/"><Logo></Logo></Link>
                 
                 </h1>
-            <div className='flex items-center '>
+            <div className='flex items-center my-8'>
                 <div className='flex-1'>
                     <Outlet></Outlet>
                 </div>
