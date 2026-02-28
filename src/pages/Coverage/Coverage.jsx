@@ -1,5 +1,5 @@
 import { PosAnimation } from "leaflet";
-import React from "react";
+import React, { useRef } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useLoaderData } from "react-router";
@@ -7,11 +7,25 @@ import { useLoaderData } from "react-router";
 const Coverage = () => {
   const position = [23.685, 90.3563];
   const serviceCenters = useLoaderData();
+  const mapRef = useRef(null);
+
+  const handleSearch = (e) => {
+    e.preventDeafault();
+    const location = e.target.location.value;
+    const district = serviceCenters.find((c) =>
+      c.district.toLowerCase().includes(location.toLowerCase()),
+    );
+    if (district) {
+      const coord = [district.latitude, district.longitude];
+      console.log(district, coord);
+      mapRef.current.flyTo(coord, 15);
+    }
+  };
   return (
     <div>
       <h2>We are available in 64 district</h2>
       <div>
-        <form>
+        <form onSubmit={handleSearch}>
           <label className="input">
             <svg
               className="h-[1em] opacity-50"
@@ -30,7 +44,7 @@ const Coverage = () => {
               </g>
             </svg>
             <input type="search" className="grow" placeholder="Search" />
-           <button className="bg-primary p-2 rounded -mx-3">Search</button>
+            <button className="bg-primary p-2 rounded -mx-3">Search</button>
           </label>
         </form>
       </div>
@@ -41,6 +55,7 @@ const Coverage = () => {
           zoom={8}
           scrollWheelZoom={false}
           className="h-[800px]"
+          ref={mapRef}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
