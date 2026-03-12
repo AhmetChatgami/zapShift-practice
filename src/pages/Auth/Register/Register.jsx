@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../../components/Logo/Logo";
 import authImage from "../../../assets/authImage.png";
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
@@ -14,6 +14,9 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const { registerUser , updateUserProfile} = useAuth();
+  const location = useLocation()
+  const navigate = useNavigate()
+  console.log('in register', location )
 
   const handleRegister = (data) => {
     console.log(data);
@@ -38,6 +41,7 @@ const Register = () => {
           updateUserProfile(userProfile)
           .then(()=>{
             console.log('user profile update done')
+            navigate(location.state || '/')
           })
           .cath(error => console.log(error))
         })
@@ -110,7 +114,7 @@ const Register = () => {
               )}
               <div>
                 <p className="link link-hover">
-                  Have an account? <Link to="/sign-in">Login</Link>
+                  Have an account? <Link state={location.state} to="/sign-in">Login</Link>
                 </p>
               </div>
               <button className="btn btn-neutral mt-4">Register</button>
@@ -128,3 +132,5 @@ const Register = () => {
 };
 
 export default Register;
+
+// Part-2 finished
