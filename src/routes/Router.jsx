@@ -7,6 +7,7 @@ import SignIn from "../pages/Auth/SignIn/SignIn";
 import Register from "../pages/Auth/Register/Register";
 import Rider from "../pages/Rider/Rider";
 import PrivateRoute from "./PrivateRoute";
+import SendParcel from "../pages/sendParcel/SendParcel";
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
         {
           path: 'beRider',
           element: <PrivateRoute><Rider/> </PrivateRoute>
+        },
+        {
+          path: 'send-parcel',
+          element: <PrivateRoute><SendParcel/> </PrivateRoute>
         },
         {
             path: 'coverage',
