@@ -9,43 +9,51 @@ import Rider from "../pages/Rider/Rider";
 import PrivateRoute from "./PrivateRoute";
 import SendParcel from "../pages/sendParcel/SendParcel";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     children: [
-        {
-            index: true,
-            Component: Home,
-        },
-        {
-          path: 'beRider',
-          element: <PrivateRoute><Rider/> </PrivateRoute>
-        },
-        {
-          path: 'send-parcel',
-          element: <PrivateRoute><SendParcel/> </PrivateRoute>
-        },
-        {
-            path: 'coverage',
-            Component: Coverage,
-            loader: ()=> fetch('/serviceCenter.json').then(res=>res.json())
-        }
-    ]
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "beRider",
+        element: (
+          <PrivateRoute>
+            <Rider />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "send-parcel",
+        element: (
+          <PrivateRoute>
+            <SendParcel />{" "}
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
+      },
+      {
+        path: "coverage",
+        Component: Coverage,
+        loader: () => fetch("/serviceCenter.json").then((res) => res.json()),
+      },
+    ],
   },
   {
-    path:'/',
+    path: "/",
     Component: AuthLayout,
-    children:[
+    children: [
       {
-        path: 'sign-in',
+        path: "sign-in",
         Component: SignIn,
       },
       {
-        path: 'register',
+        path: "register",
         Component: Register,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ]);
