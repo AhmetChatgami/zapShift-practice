@@ -5,14 +5,15 @@ import { useLoaderData } from "react-router";
 const SendParcel = () => {
   const {
     register,
-    handleSubmit, watch,
+    handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
   const serviceCenters = useLoaderData();
   const regionsDuplicate = serviceCenters.map((c) => c.region);
   const regions = [...new Set(regionsDuplicate)];
-  const senderRegion = watch('senderRegion')
+  const senderRegion = watch("senderRegion");
 
   const districtsByRegion = (region) => {
     const regionDistricts = serviceCenters.filter((c) => c.region === region);
@@ -106,7 +107,11 @@ const SendParcel = () => {
             {/* sender region */}
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Sender Region</legend>
-              <select {...register("senderRegion")} defaultValue="Pick a browser" className="select">
+              <select
+                {...register("senderRegion")}
+                defaultValue="Pick a browser"
+                className="select"
+              >
                 <option disabled={true}>Select a region</option>
                 {regions.map((r, i) => (
                   <option key={i} value={r}>
@@ -118,9 +123,13 @@ const SendParcel = () => {
             </fieldset>
 
             {/* sender district */}
-             <fieldset className="fieldset">
+            <fieldset className="fieldset">
               <legend className="fieldset-legend">Sender District</legend>
-              <select {...register("senderDistrict")} defaultValue="Select a District" className="select">
+              <select
+                {...register("senderDistrict")}
+                defaultValue="Select a District"
+                className="select"
+              >
                 <option disabled={true}>Select a District</option>
                 {districtsByRegion(senderRegion).map((r, i) => (
                   <option key={i} value={r}>
@@ -130,7 +139,6 @@ const SendParcel = () => {
               </select>
               {/* <span className="label">Optional</span> */}
             </fieldset>
-
 
             {/* sender message */}
             <label className="label text-secondary mt-4">
